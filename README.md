@@ -77,9 +77,36 @@
     };
     ```
 
-## Promise
-
 ## Suspense
+
+- 概要
+
+  ```tsx
+  if (status === "loading") return <p>Loading...</p>;
+  if (status === "error") return <p>Error</p>;
+  ```
+
+  子コンポーネントに今まで書いていた上記のようなコードを、親側で定義できるようになった
+
+- コード
+
+  ```tsx
+
+  const MyComponent = () => {
+    return (
+      <ErrorBoundary
+        fallback={
+          <ExclamationCircleIcon className="my-5 h-10 w-10 text-pink-500" />
+        }
+      >
+        <Suspense fallback={<Spinner />}>
+          <Users />
+        </Suspense>
+      </ErrorBoundary>;
+    );
+  };
+
+  ```
 
 ## Nested Suspense
 
