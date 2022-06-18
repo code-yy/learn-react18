@@ -112,6 +112,10 @@
 
 - 概要
 
+  Suspense をネストしている場合、
+  FooComponent → BarComponent の順番で読み込まれる
+
+
   ```tsx
   const NestedSuspense = () => {
     return (
@@ -125,7 +129,7 @@
             </>
           }
         >
-          <FooComponents />
+          <FooComponent />
           <Suspense
             fallback={
               <>
@@ -134,7 +138,7 @@
               </>
             }
           >
-            <BarComponents />
+            <BarComponent />
           </Suspense>
         </Suspense>
       </Layout>
@@ -142,8 +146,6 @@
   };
   ```
 
-  Suspense をネストしている場合、
-  FooComponents → BarComponents の順番で読み込まれる
 
 ## startTransition (Concurrent feature)
 
