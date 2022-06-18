@@ -8,8 +8,8 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AutoBatch } from "./components/AutoBatch";
 import { SuspenseDemo } from "./components/SuspenseDemo";
-// import { NestedSuspense } from "./components/NestedSuspense";
-// import { Concurrent } from "./components/Concurrent";
+import { NestedSuspense } from "./components/NestedSuspense";
+import { Concurrent } from "./components/Concurrent";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,8 +30,8 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="/autobatch" element={<AutoBatch />} />
         <Route path="/suspense" element={<SuspenseDemo />} />
-        {/* <Route path="/nested_suspense" element={<NestedSuspense />} /> */}
-        {/* <Route path="/concurrent" element={<Concurrent />} /> */}
+        <Route path="/nested_suspense" element={<NestedSuspense />} />
+        <Route path="/concurrent" element={<Concurrent />} />
       </Routes>
     </BrowserRouter>
     <ReactQueryDevtools initialIsOpen={false} />

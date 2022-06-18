@@ -110,4 +110,59 @@
 
 ## Nested Suspense
 
+- 概要
+
+  ```tsx
+  const NestedSuspense = () => {
+    return (
+      <Layout>
+        <p className="mb-3 text-xl font-bold text-blue-500">Nested Suspense</p>
+        <Suspense
+          fallback={
+            <>
+              <p className="my-5 text-green-500">Showing outer skelton...</p>
+              <Spinner />
+            </>
+          }
+        >
+          <FooComponents />
+          <Suspense
+            fallback={
+              <>
+                <p className="my-5 text-pink-500">Showing inner skelton...</p>
+                <Spinner />
+              </>
+            }
+          >
+            <BarComponents />
+          </Suspense>
+        </Suspense>
+      </Layout>
+    );
+  };
+  ```
+
+  Suspense をネストしている場合、
+  FooComponents → BarComponents の順番で読み込まれる
+
 ## startTransition (Concurrent feature)
+
+- 概要
+
+  state の更新に、優先順位をつけることができる
+
+- コード
+
+  ```tsx
+  const [isPending, startTransition] = useTransition();
+  const [input, setInput] = useState("");
+  const [searchKey, setSearchKey] = useState("");
+
+  const updateHandler = (e) => {
+    setInput(e.target.value);
+    startTransition(() => setSearchKey(e.target.value));
+  };
+
+  // startTransitionで優先順位の低いstateを指定
+  // isPendingは、inputとsearchKeyの値に違いがある時にtrueになる
+  ```
